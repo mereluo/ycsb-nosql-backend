@@ -3,9 +3,7 @@ package com.test.datamanagement.model;
 import com.test.datamanagement.entity.DBConfig;
 import com.test.datamanagement.entity.DatabaseOption;
 import com.test.datamanagement.entity.TestConfig;
-import com.test.datamanagement.entity.WorkloadA;
-import com.test.datamanagement.entity.WorkloadB;
-import com.test.datamanagement.entity.WorkloadF;
+import com.test.datamanagement.entity.Workload;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,34 +47,34 @@ public class CompleteWorkload {
   // databaseOption fields
   private String database;
 
-  public DBConfig getDBConfig(DatabaseOption dbOption) {
-//    if (!isMultiRegion && numOfRegions > 1) {
-//      throw new IllegalArgumentException("Error: inconsistent isMultiRegion and numOfRegions");
-//    }
-    return new DBConfig(isTransactional, platform, numOfNodes, isMultiRegion,
-    numOfRegions, description, dbOption);
-  }
-
-  public TestConfig getTestConfig(DBConfig dbConfig) {
-    return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
-  }
-
-  public WorkloadA getWorkloadA(TestConfig testConfig) {
-    return new WorkloadA(opsPerSec, readMeanLatency, readMaxLatency, readP95,
-    readP99, updateMeanLatency, updateMaxLatency, updateP95,
-    updateP99, timeSeries, testConfig);
-  }
-
-  public WorkloadB getWorkloadB(TestConfig testConfig) {
-    return new WorkloadB(opsPerSec, readMeanLatency, readMaxLatency, readP95,
-    readP99, updateMeanLatency, updateMaxLatency, updateP95,
-    updateP99, timeSeries, testConfig);
-  }
-
-  public WorkloadF getWorkloadF(TestConfig testConfig) {
-    return new WorkloadF(opsPerSec, readMeanLatency, readMaxLatency, readP95,
-    readP99, rmwMeanLatency, rmwMaxLatency, rmwP95, rmwP99,
-    timeSeries, testConfig);
-  }
+//  public DBConfig getDBConfig(DatabaseOption dbOption) {
+////    if (!isMultiRegion && numOfRegions > 1) {
+////      throw new IllegalArgumentException("Error: inconsistent isMultiRegion and numOfRegions");
+////    }
+//    return new DBConfig(isTransactional, platform, numOfNodes, isMultiRegion,
+//    numOfRegions, description, dbOption);
+//  }
+//
+//  public TestConfig getTestConfig(DBConfig dbConfig) {
+//    return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
+//  }
+//
+//  public Workload getWorkloadA(TestConfig testConfig) {
+//    return new Workload(opsPerSec, readMeanLatency, readMaxLatency, readP95,
+//    readP99, updateMeanLatency, updateMaxLatency, updateP95,
+//    updateP99, timeSeries, testConfig);
+//  }
+//
+//  public WorkloadB getWorkloadB(TestConfig testConfig) {
+//    return new WorkloadB(opsPerSec, readMeanLatency, readMaxLatency, readP95,
+//    readP99, updateMeanLatency, updateMaxLatency, updateP95,
+//    updateP99, timeSeries, testConfig);
+//  }
+//
+//  public WorkloadF getWorkloadF(TestConfig testConfig) {
+//    return new WorkloadF(opsPerSec, readMeanLatency, readMaxLatency, readP95,
+//    readP99, rmwMeanLatency, rmwMaxLatency, rmwP95, rmwP99,
+//    timeSeries, testConfig);
+//  }
 
 }

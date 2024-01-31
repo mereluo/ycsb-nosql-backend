@@ -26,11 +26,11 @@ public class RequestWorkload {
 
   private String database;
 
-  public DBConfig getDBConfig(DatabaseOption dbOption) {
-    return new DBConfig(isTransactional, platform, numOfNodes, isMultiRegion,
-        numOfRegions, description, dbOption);
-  }
-  public TestConfig getTestConfig(DBConfig dbConfig) {
-    return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
-  }
+//  public DBConfig getDBConfig(DatabaseOption dbOption) {
+//    return new DBConfig(isTransactional, platform, numOfNodes, isMultiRegion,
+//        numOfRegions, description, dbOption);
+//  }
+//  public TestConfig getTestConfig(DBConfig dbConfig) {
+//    return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
+//  }
 }

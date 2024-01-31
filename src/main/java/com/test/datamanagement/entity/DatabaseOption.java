@@ -1,29 +1,24 @@
 package com.test.datamanagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.List;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-@Entity
 @Getter @Setter @NoArgsConstructor
-@Table(name="database_option")
+@Document("database_option")
 public class DatabaseOption {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-
+  private String id;
   private String database;
 
   public DatabaseOption(String database) {
     this.database = database;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -36,7 +31,6 @@ public class DatabaseOption {
     return Objects.equals(getId(), that.getId()) && Objects.equals(getDatabase(),
         that.getDatabase());
   }
-
   @Override
   public int hashCode() {
     return Objects.hash(getDatabase());

@@ -1,33 +1,25 @@
 package com.test.datamanagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.util.List;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-@Entity
 @Getter @Setter @NoArgsConstructor
-@Table(name="test_config")
+@Document("test_config")
 public class TestConfig {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private String id;
 
-  private int concurrencyLevel; // 64, 128, 256 maybe an enum?
+  private int concurrencyLevel; // 64, 128, 256
   private int recordCounts;
   private String commandLine;
 
-  // Many TestConfig entities belong to one DBConfig
-  @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "fk_db_config_id") // This is the foreign key column in the test_config table
+  @DocumentReference
   private DBConfig dbConfig;
 
   public TestConfig(int concurrencyLevel, int recordCounts, String commandLine, DBConfig dbConfig) {
