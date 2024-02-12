@@ -6,9 +6,9 @@ POST http://localhost:8080/api/dbOption
 Content-Type: application/json
 
 {
-  "database": {"database": "MongoDB"},
-  "test": "yes"
+  "database": "MongoDB"
 }
+
 
 
 ### Get dbConfig
@@ -25,7 +25,7 @@ Content-Type: application/json
   "numOfNodes": 3,
   "numOfRegions": 2,
   "isMultiRegion": true,
-  "databaseOption" : {"database": "MongoDB"}
+  "dbOption" : {"database": "MongoDB"}
 }
 
 ### Get testConfig
@@ -39,30 +39,31 @@ Content-Type: application/json
   "concurrencyLevel": 64,
   "recordCounts": 3,
   "commandLine": "sample commandLine",
-  "dbConfig": {"id" : 1}
+  "dbConfig": {"description" : "Sample DBConfig"}
 }
 
 
 ### Get workload
 GET http://localhost:8080/api/workload
 
-### Get workloadB
-GET http://localhost:8080/api/workloadB
-
 ### Create a new workload
 POST http://localhost:8080/api/workload
 Content-Type: application/json
 
 {
-  "opsPerSec": 100.0,
-  "readMeanLatency": 10.5,
-  "readMaxLatency": 20.5,
-  "readP95": 15.5,
-  "readP99": 25.5,
-  "updateMeanLatency": 8.5,
-  "updateMaxLatency": 18.5,
-  "updateP95": 13.5,
-  "updateP99": 23.5,
+  "workloadType": "A",
+  "updateType": "Buffer",
+  "userDefinedFields": {
+    "opsPerSec": 100.0,
+    "readMeanLatency": 10.5,
+    "readMaxLatency": 20.5,
+    "readP95": 15.5,
+    "readP99": 25.5,
+    "updateMeanLatency": 8.5,
+    "updateMaxLatency": 18.5,
+    "updateP95": 13.5,
+    "updateP99": 23.5
+  },
   "timeSeries": {
     "data": {
       "entry1": {
@@ -75,7 +76,7 @@ Content-Type: application/json
       }
     }
   },
-  "testConfig": {"id" :  1}
+  "testConfig": {"commandLine" :  "sample commandLine"}
 }
 
 ### Create a new workload using all fields
@@ -84,15 +85,18 @@ Content-Type: application/json
 
 {
   "workloadType": "A",
-  "opsPerSec": 100.0,
-  "readMeanLatency": 10.5,
-  "readMaxLatency": 20.5,
-  "readP95": 15.5,
-  "readP99": 25.5,
-  "updateMeanLatency": 8.5,
-  "updateMaxLatency": 18.5,
-  "updateP95": 13.5,
-  "updateP99": 23.5,
+  "updateType": "Buffer",
+  "userDefinedFields": {
+    "opsPerSec": 100.0,
+    "readMeanLatency": 10.5,
+    "readMaxLatency": 20.5,
+    "readP95": 15.5,
+    "readP99": 25.5,
+    "updateMeanLatency": 8.5,
+    "updateMaxLatency": 18.5,
+    "updateP95": 13.5,
+    "updateP99": 23.5
+  },
   "timeSeries": {
     "data": {
       "entry1": {
@@ -107,15 +111,14 @@ Content-Type: application/json
   },
 
   "concurrencyLevel": 64,
-  "recordCounts": 3,
+  "recordCounts": 1000,
   "commandLine": "sample commandLine",
 
-  "description": "Sample DBConfig",
-  "transactional": true,
+  "type": "ycsb",
   "platform": "Sample Platform",
   "numOfNodes": 3,
   "numOfRegions": 2,
-  "multiRegion": true,
+  "description": "Sample DBConfig",
 
   "database": "MongoDB"
 }
