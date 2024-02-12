@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkloadRepository extends MongoRepository<Workload, Long> {
-  Workload findFirstByTestConfig(TestConfig testConfig);
+//  Workload findFirstByTestConfig(TestConfig testConfig);
   List<Workload> findAllByTestConfig(TestConfig testConfig);
 }

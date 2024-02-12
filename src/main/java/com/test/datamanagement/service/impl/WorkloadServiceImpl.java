@@ -23,18 +23,20 @@ public class WorkloadServiceImpl implements WorkloadService {
     return workloadRepository.findById(id);
   }
 
-  public Workload findFirstByTestConfig(TestConfig testConfig) {
-    return workloadRepository.findFirstByTestConfig(testConfig);
-  }
+//  public Workload findFirstByTestConfig(TestConfig testConfig) {
+//    return workloadRepository.findFirstByTestConfig(testConfig);
+//  }
 
   public List<Workload> findAllByTestConfig(TestConfig testConfig) {
     return workloadRepository.findAllByTestConfig(testConfig);
   }
   @Override
   public Workload saveEntity(Workload workload) {
-    Workload entity = findFirstByTestConfig(workload.getTestConfig());
-    if (entity != null && entity.equals(workload)) {
-      return entity;
+    List<Workload> entity = findAllByTestConfig(workload.getTestConfig());
+    if (!entity.isEmpty()) {
+      for (Workload load : entity) {
+        if (load.equals(workload)) return load;
+      }
     }
     return workloadRepository.save(workload);
   }

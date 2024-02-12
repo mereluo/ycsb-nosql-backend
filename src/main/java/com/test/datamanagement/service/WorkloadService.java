@@ -9,7 +9,7 @@ public interface WorkloadService {
   List<Workload> findAllEntity();
   Optional<Workload> findById(Long id);
   Workload saveEntity(Workload workload);
-  Workload findFirstByTestConfig(TestConfig testConfig);
+//  Workload findFirstByTestConfig(TestConfig testConfig);
   List<Workload> findAllByTestConfig(TestConfig testConfig);
   Workload updateEntity(Workload workload);
   void deleteEntity(Long id);

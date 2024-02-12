@@ -1,83 +1,83 @@
-### Get databaseOption
-GET http://localhost:8080/api/dbOption
-
-### Create databaseOption
-POST http://localhost:8080/api/dbOption
-Content-Type: application/json
-
-{
-  "database": "MongoDB"
-}
-
-
-
-### Get dbConfig
-GET http://localhost:8080/api/dbConfig
-
-### Create dbConfig
-POST http://localhost:8080/api/dbConfig
-Content-Type: application/json
-
-{
-  "description": "Sample DBConfig",
-  "isTransactional": true,
-  "platform": "Sample Platform",
-  "numOfNodes": 3,
-  "numOfRegions": 2,
-  "isMultiRegion": true,
-  "dbOption" : {"database": "MongoDB"}
-}
-
-### Get testConfig
-GET http://localhost:8080/api/testConfig
-
-### Create testConfig
-POST http://localhost:8080/api/testConfig
-Content-Type: application/json
-
-{
-  "concurrencyLevel": 64,
-  "recordCounts": 3,
-  "commandLine": "sample commandLine",
-  "dbConfig": {"description" : "Sample DBConfig"}
-}
-
-
-### Get workload
-GET http://localhost:8080/api/workload
-
-### Create a new workload
-POST http://localhost:8080/api/workload
-Content-Type: application/json
-
-{
-  "workloadType": "A",
-  "updateType": "Buffer",
-  "userDefinedFields": {
-    "opsPerSec": 100.0,
-    "readMeanLatency": 10.5,
-    "readMaxLatency": 20.5,
-    "readP95": 15.5,
-    "readP99": 25.5,
-    "updateMeanLatency": 8.5,
-    "updateMaxLatency": 18.5,
-    "updateP95": 13.5,
-    "updateP99": 23.5
-  },
-  "timeSeries": {
-    "data": {
-      "entry1": {
-        "time": [1, 2, 3],
-        "latency": [10.5, 15.2, 20.0]
-      },
-      "entry2": {
-        "time": [4, 5, 6],
-        "latency": [18.3, 22.1, 25.8]
-      }
-    }
-  },
-  "testConfig": {"commandLine" :  "sample commandLine"}
-}
+#### Get databaseOption
+#GET http://localhost:8080/api/dbOption
+#
+#### Create databaseOption
+#POST http://localhost:8080/api/dbOption
+#Content-Type: application/json
+#
+#{
+#  "database": "MongoDB"
+#}
+#
+#
+#
+#### Get dbConfig
+#GET http://localhost:8080/api/dbConfig
+#
+#### Create dbConfig
+#POST http://localhost:8080/api/dbConfig
+#Content-Type: application/json
+#
+#{
+#  "description": "Sample DBConfig",
+#  "isTransactional": true,
+#  "platform": "Sample Platform",
+#  "numOfNodes": 3,
+#  "numOfRegions": 2,
+#  "isMultiRegion": true,
+#  "dbOption" : {"database": "MongoDB"}
+#}
+#
+#### Get testConfig
+#GET http://localhost:8080/api/testConfig
+#
+#### Create testConfig
+#POST http://localhost:8080/api/testConfig
+#Content-Type: application/json
+#
+#{
+#  "concurrencyLevel": 64,
+#  "recordCounts": 3,
+#  "commandLine": "sample commandLine",
+#  "dbConfig": {"description" : "Sample DBConfig"}
+#}
+#
+#
+#### Get workload
+#GET http://localhost:8080/api/workload
+#
+#### Create a new workload
+#POST http://localhost:8080/api/workload
+#Content-Type: application/json
+#
+#{
+#  "workloadType": "A",
+#  "updateType": "Buffer",
+#  "userDefinedFields": {
+#    "opsPerSec": 100.0,
+#    "readMeanLatency": 10.5,
+#    "readMaxLatency": 20.5,
+#    "readP95": 15.5,
+#    "readP99": 25.5,
+#    "updateMeanLatency": 8.5,
+#    "updateMaxLatency": 18.5,
+#    "updateP95": 13.5,
+#    "updateP99": 23.5
+#  },
+#  "timeSeries": {
+#    "data": {
+#      "entry1": {
+#        "time": [1, 2, 3],
+#        "latency": [10.5, 15.2, 20.0]
+#      },
+#      "entry2": {
+#        "time": [4, 5, 6],
+#        "latency": [18.3, 22.1, 25.8]
+#      }
+#    }
+#  },
+#  "testConfig": {"commandLine" :  "sample commandLine"}
+#}
 
 ### Create a new workload using all fields
 POST http://localhost:8080/api/workload/save
