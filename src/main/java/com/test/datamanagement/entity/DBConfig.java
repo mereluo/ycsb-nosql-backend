@@ -1,5 +1,6 @@
 package com.test.datamanagement.entity;
 
+import java.util.Objects;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,5 +31,27 @@ public class DBConfig {
     this.numOfRegions = numOfRegions;
     this.description = description;
     this.dbOption = dbOption;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    DBConfig dbConfig = (DBConfig) o;
+    return getNumOfNodes() == dbConfig.getNumOfNodes()
+        && getNumOfRegions() == dbConfig.getNumOfRegions() && Objects.equals(getType(),
+        dbConfig.getType()) && Objects.equals(getPlatform(), dbConfig.getPlatform())
+        && Objects.equals(getDescription(), dbConfig.getDescription())
+        && Objects.equals(getDbOption(), dbConfig.getDbOption());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getType(), getPlatform(), getNumOfNodes(), getNumOfRegions(),
+        getDescription(), getDbOption());
   }
 }
