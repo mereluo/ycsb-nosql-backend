@@ -25,10 +25,6 @@ public class TestConfigController {
     return TestConfigService.findAllEntity();
   }
 
-  @GetMapping("/commandLine/{commandLine}")
-  public TestConfig findByCommandLine(@PathVariable("commandLine") String commandLine) {
-    return TestConfigService.findByCommandLine(commandLine);
-  }
   @PostMapping
   public TestConfig saveEntity(@RequestBody TestConfig TestConfig) {
     return TestConfigService.saveEntity(TestConfig);

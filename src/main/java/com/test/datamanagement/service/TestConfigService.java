@@ -9,7 +9,7 @@ public interface TestConfigService {
   List<TestConfig> findAllEntity();
   List<TestConfig> findAllByDbConfig(DBConfig dbConfig);
   Optional<TestConfig> findById(Long id);
-  TestConfig findByCommandLine(String commandLine);
+  List<TestConfig> findByCommandLine(String commandLine);
   TestConfig saveEntity(TestConfig testConfig);
   TestConfig updateEntity(TestConfig testConfig);
   void deleteEntity(Long id);

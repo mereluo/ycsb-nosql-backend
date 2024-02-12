@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TestConfigRepository extends MongoRepository<TestConfig, Long> {
-  TestConfig findFirstByCommandLine(String commandLine);
+  List<TestConfig> findAllByCommandLine(String commandLine);
   List<TestConfig> findAllByDbConfig(DBConfig config);
 }

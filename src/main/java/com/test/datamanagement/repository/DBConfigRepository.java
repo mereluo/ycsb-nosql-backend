@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DBConfigRepository extends MongoRepository<DBConfig, Long> {
-  DBConfig findFirstByDescription(String description);
+  List<DBConfig> findAllByDescription(String description);
   List<DBConfig> findAllByDbOption(DatabaseOption databaseOption);
 }

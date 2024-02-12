@@ -28,14 +28,16 @@ public class TestConfigServiceImpl implements TestConfigService {
     return testConfigRepository.findById(id);
   }
   @Override
-  public TestConfig findByCommandLine(String commandLine) {
-    return testConfigRepository.findFirstByCommandLine(commandLine);
+  public List<TestConfig> findByCommandLine(String commandLine) {
+    return testConfigRepository.findAllByCommandLine(commandLine);
   }
   @Override
   public TestConfig saveEntity(TestConfig testConfig) {
-    TestConfig entity = findByCommandLine(testConfig.getCommandLine());
-    if (entity != null && entity.equals(testConfig)) {
-      return entity;
+    List<TestConfig> entity = findByCommandLine(testConfig.getCommandLine());
+    if (!entity.isEmpty()) {
+      for (TestConfig element : entity) {
+        if (element.equals(testConfig)) return element;
+      }
     }
     return testConfigRepository.save(testConfig);
   }

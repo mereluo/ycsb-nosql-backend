@@ -2,7 +2,6 @@ package com.test.datamanagement.entity;
 
 import com.test.datamanagement.model.TimeSeries;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import lombok.Getter;
