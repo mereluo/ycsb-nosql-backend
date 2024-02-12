@@ -28,4 +28,12 @@ public class Workload {
   @DocumentReference
   private TestConfig testConfig;
 
+  public Workload(String workloadType, String updateType, Map<String, Double> userDefinedFields,
+      TimeSeries timeSeries, TestConfig testConfig) {
+    this.workloadType = workloadType;
+    this.updateType = updateType;
+    this.userDefinedFields = userDefinedFields;
+    this.timeSeries = timeSeries;
+    this.testConfig = testConfig;
+  }
 }

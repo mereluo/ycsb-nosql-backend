@@ -1,6 +1,5 @@
 package com.test.datamanagement.entity;
 
-import java.util.List;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

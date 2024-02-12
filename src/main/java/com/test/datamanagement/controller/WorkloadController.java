@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/workloadA")
+@RequestMapping("/api/workload")
 public class WorkloadController {
 
   private final DBOptionService dbOptionService;
@@ -35,25 +35,31 @@ public class WorkloadController {
     this.dbConfigService = dbConfigService;
     this.testConfigService = testConfigService;
   }
+
   @GetMapping("")
   public List<Workload> findAllEntity() {
     return workloadService.findAllEntity();
   }
 
-//  @PostMapping("/save")
-//  public Workload create(@RequestBody CompleteWorkload entity) {
-//    DatabaseOption dbOption = new DatabaseOption(entity.getDatabase());
-//    dbOption = dbOptionService.saveEntity(dbOption);
-//
-//    DBConfig dbConfig = entity.getDBConfig(dbOption);
-//    dbConfig = dbConfigService.saveEntity(dbConfig);
-//
-//    TestConfig testConfig = entity.getTestConfig(dbConfig);
-//    testConfig = testConfigService.saveEntity(testConfig);
-//
-//    Workload workload = entity.getWorkloadA(testConfig);
-//    return workloadService.saveEntity(workload);
-//  }
+  @PostMapping
+  public Workload saveEntity(@RequestBody Workload workload) {
+    return workloadService.saveEntity(workload);
+  }
+
+  @PostMapping("/save")
+  public Workload create(@RequestBody CompleteWorkload entity) {
+    DatabaseOption dbOption = new DatabaseOption(entity.getDatabase());
+    dbOption = dbOptionService.saveEntity(dbOption);
+
+    DBConfig dbConfig = entity.getDBConfig(dbOption);
+    dbConfig = dbConfigService.saveEntity(dbConfig);
+
+    TestConfig testConfig = entity.getTestConfig(dbConfig);
+    testConfig = testConfigService.saveEntity(testConfig);
+
+    Workload workload = entity.getWorkload(testConfig);
+    return workloadService.saveEntity(workload);
+  }
 
 //  @PostMapping("/retrieve")
 //  public Workload retrieve(@RequestBody RequestWorkload entity) {
@@ -76,11 +82,4 @@ public class WorkloadController {
 //    for (TestConfig curr : testConfigs) {
 //      if (curr.equals(targetTestConfig)) {
 //        foundTestConfig = curr;
-//        break;
-//      }
-//    }
-//    // workload
-//    return workloadService.findFirstByTestConfig(foundTestConfig);
-//  }
 }
-
