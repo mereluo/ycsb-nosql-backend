@@ -10,6 +10,7 @@ public interface WorkloadService {
   Optional<Workload> findById(Long id);
   Workload saveEntity(Workload workload);
   Workload findFirstByTestConfig(TestConfig testConfig);
+  List<Workload> findAllByTestConfig(TestConfig testConfig);
   Workload updateEntity(Workload workload);
   void deleteEntity(Long id);
 }

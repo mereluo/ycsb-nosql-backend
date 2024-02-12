@@ -61,25 +61,31 @@ public class WorkloadController {
     return workloadService.saveEntity(workload);
   }
 
-//  @PostMapping("/retrieve")
-//  public Workload retrieve(@RequestBody RequestWorkload entity) {
-//    // database
-//    DatabaseOption dbOption = dbOptionService.findFirstByDatabase(entity.getDatabase());
-//    // dbConfig
-//    DBConfig foundDbConfig = null;
-//    DBConfig targetDbConfig = entity.getDBConfig(dbOption);
-//    List<DBConfig> dbConfigLists = dbConfigService.findAllByDatabaseOption(dbOption);
-//    for (DBConfig curr : dbConfigLists) {
-//      if (curr.equals(targetDbConfig)) {
-//        foundDbConfig = curr;
-//        break;
-//      }
-//    }
-//    // testConfig
-//    TestConfig foundTestConfig = null;
-//    TestConfig targetTestConfig = entity.getTestConfig(foundDbConfig);
-//    List<TestConfig> testConfigs = testConfigService.findAllByDbConfig(foundDbConfig);
-//    for (TestConfig curr : testConfigs) {
-//      if (curr.equals(targetTestConfig)) {
-//        foundTestConfig = curr;
+  @PostMapping("/search")
+  public List<Workload> retrieve(@RequestBody RequestWorkload entity) {
+    // database
+    DatabaseOption dbOption = dbOptionService.findFirstByDatabase(entity.getDatabase());
+    // dbConfig
+    DBConfig foundDbConfig = null;
+    DBConfig targetDbConfig = entity.getDBConfig(dbOption);
+    List<DBConfig> dbConfigLists = dbConfigService.findAllByDatabaseOption(dbOption);
+    for (DBConfig curr : dbConfigLists) {
+      if (curr.equals(targetDbConfig)) {
+        foundDbConfig = curr;
+        break;
+      }
+    }
+    // testConfig
+    TestConfig foundTestConfig = null;
+    TestConfig targetTestConfig = entity.getTestConfig(foundDbConfig);
+    List<TestConfig> testConfigs = testConfigService.findAllByDbConfig(foundDbConfig);
+    for (TestConfig curr : testConfigs) {
+      if (curr.equals(targetTestConfig)) {
+        foundTestConfig = curr;
+        break;
+      }
+    }
+    // workload
+    return workloadService.findAllByTestConfig(foundTestConfig);
+  }
 }

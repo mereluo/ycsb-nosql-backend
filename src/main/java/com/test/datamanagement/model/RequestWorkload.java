@@ -12,25 +12,24 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RequestWorkload {
   // testConfig fields
-  private int concurrencyLevel; // 64, 128, 256
+  private int concurrencyLevel; // 64, 128, 256 maybe an enum?
   private int recordCounts;
   private String commandLine;
 
   // dbConfig fields
-  private boolean isTransactional; // ycsb or ycsb-t
+  private String type; // ycsb, ycsb-t, or ycsb-r
   private String platform;
   private int numOfNodes;
-  private boolean isMultiRegion;
   private int numOfRegions;
   private String description;
 
+  // databaseOption fields
   private String database;
 
-//  public DBConfig getDBConfig(DatabaseOption dbOption) {
-//    return new DBConfig(isTransactional, platform, numOfNodes, isMultiRegion,
-//        numOfRegions, description, dbOption);
-//  }
-//  public TestConfig getTestConfig(DBConfig dbConfig) {
-//    return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
-//  }
+  public DBConfig getDBConfig(DatabaseOption dbOption) {
+    return new DBConfig(type, platform, numOfNodes, numOfRegions, description, dbOption);
+  }
+  public TestConfig getTestConfig(DBConfig dbConfig) {
+    return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
+  }
 }
