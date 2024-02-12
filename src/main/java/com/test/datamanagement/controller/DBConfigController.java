@@ -25,10 +25,6 @@ public class DBConfigController {
     return DBConfigService.findAllEntity();
   }
 
-  @GetMapping("/description/{description}")
-  public DBConfig findEntityByDescription(@PathVariable("description") String description) {
-    return DBConfigService.findByDescription(description);
-  }
   @PostMapping("")
   public DBConfig saveEntity(@RequestBody DBConfig dbConfig) {
     return DBConfigService.saveEntity(dbConfig);

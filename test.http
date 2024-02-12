@@ -84,7 +84,7 @@ POST http://localhost:8080/api/workload/save
 Content-Type: application/json
 
 {
-  "workloadType": "B",
+  "workloadType": "A",
   "updateType": "Buffer",
   "userDefinedFields": {
     "opsPerSec": 100.0,

@@ -28,14 +28,16 @@ public class DBConfigServiceImpl implements DBConfigService {
     return dbConfigRepository.findById(id);
   }
   @Override
-  public DBConfig findByDescription(String description) {
-    return dbConfigRepository.findFirstByDescription(description);
+  public List<DBConfig> findAllByDescription(String description) {
+    return dbConfigRepository.findAllByDescription(description);
   }
   @Override
   public DBConfig saveEntity(DBConfig dbConfig) {
-    DBConfig entity = findByDescription(dbConfig.getDescription());
-    if (entity != null && entity.equals(dbConfig)) {
-      return entity;
+    List<DBConfig> entity = findAllByDescription(dbConfig.getDescription());
+    if (!entity.isEmpty()) {
+      for(DBConfig ele : entity) {
+        if (ele.equals(dbConfig)) return ele;
+      }
     }
     return dbConfigRepository.save(dbConfig);
   }

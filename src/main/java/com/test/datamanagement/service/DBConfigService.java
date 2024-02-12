@@ -9,7 +9,7 @@ public interface DBConfigService {
   List<DBConfig> findAllEntity();
   List<DBConfig> findAllByDatabaseOption(DatabaseOption databaseOption);
   Optional<DBConfig> findById(Long id);
-  DBConfig findByDescription(String description);
+  List<DBConfig> findAllByDescription(String description);
   DBConfig saveEntity(DBConfig dbConfig);
   DBConfig updateEntity(DBConfig dbConfig);
   void deleteEntity(Long id);
