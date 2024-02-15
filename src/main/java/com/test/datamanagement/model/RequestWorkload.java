@@ -19,15 +19,18 @@ public class RequestWorkload {
   // dbConfig fields
   private String type; // ycsb, ycsb-t, or ycsb-r
   private String platform;
-  private int numOfNodes;
-  private int numOfRegions;
+  private int numOfNodes; // number of CPUs: 5000 -> 5 CPUs
+  private boolean isMultiRegional; // multi or single
+  private boolean isCoLocated; // whether primary and client are in the same location
+  private String locationDetails;
   private String description;
 
   // databaseOption fields
   private String database;
 
   public DBConfig getDBConfig(DatabaseOption dbOption) {
-    return new DBConfig(type, platform, numOfNodes, numOfRegions, description, dbOption);
+    return new DBConfig(type, platform, numOfNodes, isMultiRegional, description,
+        isCoLocated, locationDetails, dbOption);
   }
   public TestConfig getTestConfig(DBConfig dbConfig) {
     return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);

@@ -117,7 +117,9 @@ Content-Type: application/json
   "type": "ycsb-t",
   "platform": "Sample Platform",
   "numOfNodes": 3,
-  "numOfRegions": 2,
+  "isMultiRegions": true,
+  "isCoLocated": false,
+  "locationDetails": "Oregon",
   "description": "Sample DBConfig",
 
   "database": "MongoDB"
@@ -136,7 +138,9 @@ Content-Type: application/json
   "type": "ycsb-t",
   "platform": "Sample Platform",
   "numOfNodes": 3,
-  "numOfRegions": 2,
+  "isMultiRegions": true,
+  "isCoLocated": false,
+  "locationDetails": "Oregon",
   "description": "Sample DBConfig",
 
   "database": "MongoDB"
