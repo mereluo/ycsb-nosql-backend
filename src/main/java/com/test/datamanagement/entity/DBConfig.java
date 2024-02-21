@@ -51,8 +51,7 @@ public class DBConfig {
         && isMultiRegional() == dbConfig.isMultiRegional() && isCoLocated() == dbConfig.isCoLocated()
         && Objects.equals(getType(), dbConfig.getType()) && Objects.equals(
         getPlatform(), dbConfig.getPlatform()) && Objects.equals(getDescription(),
-        dbConfig.getDescription()) && Objects.equals(getLocationDetails(),
-        dbConfig.getLocationDetails()) && Objects.equals(getDbOption(),
+        dbConfig.getDescription()) && Objects.equals(getDbOption(),
         dbConfig.getDbOption());
   }
 
@@ -60,6 +59,6 @@ public class DBConfig {
   public int hashCode() {
     return Objects.hash(getType(), getPlatform(), getNumOfNodes(), isMultiRegional(),
         getDescription(),
-        isCoLocated(), getLocationDetails(), getDbOption());
+        isCoLocated(), getDbOption());
   }
 }
