@@ -79,6 +79,12 @@
 #  "testConfig": {"commandLine" :  "sample commandLine"}
 #}
 
+### find by database
+POST http://localhost:8080/api/workload/searchByDatabase
+Content-Type: application/json
+
+Spanner
+
 ### Create a new workload using all fields
 POST http://localhost:8080/api/workload/save
 Content-Type: application/json
@@ -145,4 +151,6 @@ Content-Type: application/json
 
   "database": "MongoDB"
 }
+
+
 

@@ -66,6 +66,7 @@ public class WorkloadController {
     // database
     DatabaseOption dbOption = dbOptionService.findFirstByDatabase(entity.getDatabase());
     // dbConfig
+
     DBConfig foundDbConfig = null;
     DBConfig targetDbConfig = entity.getDBConfig(dbOption);
     List<DBConfig> dbConfigLists = dbConfigService.findAllByDatabaseOption(dbOption);
@@ -87,5 +88,10 @@ public class WorkloadController {
     }
     // workload
     return workloadService.findAllByTestConfig(foundTestConfig);
+  }
+
+  @PostMapping("/searchByDatabase")
+  public List<Workload> retrieve(@RequestBody String value) {
+    return workloadService.findAllByDatabase(value);
   }
 }

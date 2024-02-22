@@ -11,6 +11,7 @@ public interface WorkloadService {
   Workload saveEntity(Workload workload);
 //  Workload findFirstByTestConfig(TestConfig testConfig);
   List<Workload> findAllByTestConfig(TestConfig testConfig);
+  List<Workload> findAllByDatabase(String value);
   Workload updateEntity(Workload workload);
   void deleteEntity(Long id);
 }

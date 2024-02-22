@@ -30,6 +30,9 @@ public class WorkloadServiceImpl implements WorkloadService {
   public List<Workload> findAllByTestConfig(TestConfig testConfig) {
     return workloadRepository.findAllByTestConfig(testConfig);
   }
+  public List<Workload> findAllByDatabase(String value) {
+    return workloadRepository.findAllByDatabase(value);
+  }
   @Override
   public Workload saveEntity(Workload workload) {
     List<Workload> entity = findAllByTestConfig(workload.getTestConfig());
