@@ -1,6 +1,7 @@
 package com.test.datamanagement.service.impl;
 import com.test.datamanagement.entity.TestConfig;
 import com.test.datamanagement.entity.Workload;
+import com.test.datamanagement.model.RequestWorkload;
 import com.test.datamanagement.repository.WorkloadRepository;
 import com.test.datamanagement.service.WorkloadService;
 import java.util.List;
@@ -14,42 +15,42 @@ public class WorkloadServiceImpl implements WorkloadService {
   public WorkloadServiceImpl(WorkloadRepository workloadRepository) {
     this.workloadRepository = workloadRepository;
   }
-  @Override
-  public List<Workload> findAllEntity() {
-    return workloadRepository.findAll();
-  }
-  @Override
-  public Optional<Workload> findById(Long id) {
-    return workloadRepository.findById(id);
-  }
+//  @Override
+//  public List<Workload> findAllEntity() {
+//    return workloadRepository.findAll();
+//  }
+//  @Override
+//  public Optional<Workload> findById(Long id) {
+//    return workloadRepository.findById(id);
+//  }
 
 //  public Workload findFirstByTestConfig(TestConfig testConfig) {
 //    return workloadRepository.findFirstByTestConfig(testConfig);
 //  }
 
-  public List<Workload> findAllByTestConfig(TestConfig testConfig) {
-    return workloadRepository.findAllByTestConfig(testConfig);
-  }
-  public List<Workload> findAllByDatabase(String value) {
-    return workloadRepository.findAllByDatabase(value);
+//  public List<Workload> findAllByTestConfig(TestConfig testConfig) {
+//    return workloadRepository.findAllByTestConfig(testConfig);
+//  }
+  public List<Workload> findAllByDatabase(RequestWorkload reqObject) {
+    return workloadRepository.findAllByDatabase(reqObject);
   }
   @Override
   public Workload saveEntity(Workload workload) {
-    List<Workload> entity = findAllByTestConfig(workload.getTestConfig());
-    if (!entity.isEmpty()) {
-      for (Workload load : entity) {
-        if (load.equals(workload)) return load;
-      }
-    }
+//    List<Workload> entity = findAllByTestConfig(workload.getTestConfig());
+//    if (!entity.isEmpty()) {
+//      for (Workload load : entity) {
+//        if (load.equals(workload)) return load;
+//      }
+//    }
     return workloadRepository.save(workload);
   }
-  @Override
-  public Workload updateEntity(Workload workload) {
-    return workloadRepository.save(workload);
-  }
-  @Override
-  public void deleteEntity(Long id) {
-    workloadRepository.deleteById(id);
-  }
+//  @Override
+//  public Workload updateEntity(Workload workload) {
+//    return workloadRepository.save(workload);
+//  }
+//  @Override
+//  public void deleteEntity(Long id) {
+//    workloadRepository.deleteById(id);
+//  }
 
 }

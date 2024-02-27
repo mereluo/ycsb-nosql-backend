@@ -83,7 +83,10 @@
 POST http://localhost:8080/api/workload/searchByDatabase
 Content-Type: application/json
 
-Spanner
+{
+  "updateType": "query",
+  "isCoLocated": true
+}
 
 ### Create a new workload using all fields
 POST http://localhost:8080/api/workload/save

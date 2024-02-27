@@ -3,6 +3,7 @@ package com.test.datamanagement.model;
 import com.test.datamanagement.entity.DBConfig;
 import com.test.datamanagement.entity.DatabaseOption;
 import com.test.datamanagement.entity.TestConfig;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class RequestWorkload {
+  // workload
+  private String workloadType;
+  private String updateType;
+
   // testConfig fields
   private int concurrencyLevel; // 64, 128, 256 maybe an enum?
   private int recordCounts;
@@ -27,6 +33,10 @@ public class RequestWorkload {
 
   // databaseOption fields
   private String database;
+
+  public void setIsCoLocated(boolean isCoLocated) {
+    this.isCoLocated = isCoLocated;
+  }
 
   public DBConfig getDBConfig(DatabaseOption dbOption) {
     return new DBConfig(type, platform, numOfNodes, isMultiRegional, description,
