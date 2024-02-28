@@ -17,8 +17,8 @@ public class DBConfig {
   private String type; // ycsb, ycsb-t, or ycsb-r
   private String platform;
   private int numOfNodes; // number of CPUs: 5000 -> 5 CPUs
-  private boolean isMultiRegional; // multi or single
-  private boolean isCoLocated; // whether primary and client are in the same location
+  private String isMultiRegional; // multi or single
+  private String isCoLocated; // whether primary and client are in the same location
   private String locationDetails;
   private String description;
 
@@ -26,8 +26,8 @@ public class DBConfig {
   @DocumentReference(lookup = "{ 'database': ?#{#target} }")
   private DatabaseOption dbOption;
 
-  public DBConfig(String type, String platform, int numOfNodes, boolean isMultiRegional,
-      String description, boolean isCoLocated, String locationDetails, DatabaseOption dbOption) {
+  public DBConfig(String type, String platform, int numOfNodes, String isMultiRegional,
+      String description, String isCoLocated, String locationDetails, DatabaseOption dbOption) {
     this.type = type;
     this.platform = platform;
     this.numOfNodes = numOfNodes;
@@ -47,18 +47,17 @@ public class DBConfig {
       return false;
     }
     DBConfig dbConfig = (DBConfig) o;
-    return getNumOfNodes() == dbConfig.getNumOfNodes()
-        && isMultiRegional() == dbConfig.isMultiRegional() && isCoLocated() == dbConfig.isCoLocated()
-        && Objects.equals(getType(), dbConfig.getType()) && Objects.equals(
-        getPlatform(), dbConfig.getPlatform()) && Objects.equals(getDescription(),
-        dbConfig.getDescription()) && Objects.equals(getDbOption(),
-        dbConfig.getDbOption());
+    return getNumOfNodes() == dbConfig.getNumOfNodes() && Objects.equals(getType(),
+        dbConfig.getType()) && Objects.equals(getPlatform(), dbConfig.getPlatform())
+        && Objects.equals(getIsMultiRegional(), dbConfig.getIsMultiRegional())
+        && Objects.equals(getIsCoLocated(), dbConfig.getIsCoLocated())
+        && Objects.equals(getDescription(), dbConfig.getDescription())
+        && Objects.equals(getDbOption(), dbConfig.getDbOption());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getType(), getPlatform(), getNumOfNodes(), isMultiRegional(),
-        getDescription(),
-        isCoLocated(), getDbOption());
+    return Objects.hash(getType(), getPlatform(), getNumOfNodes(), getIsMultiRegional(),
+        getIsCoLocated(), getDescription(), getDbOption());
   }
 }

@@ -80,12 +80,12 @@
 #}
 
 ### find by database
-POST http://localhost:8080/api/workload/searchByDatabase
+POST http://localhost:8080/api/workload/search
 Content-Type: application/json
 
 {
   "updateType": "query",
-  "isCoLocated": true
+  "numOfNodes": 5000
 }
 
 ### Create a new workload using all fields

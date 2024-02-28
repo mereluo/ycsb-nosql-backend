@@ -6,6 +6,7 @@ import com.test.datamanagement.model.RequestWorkload;
 import java.util.List;
 
 public interface WorkloadRepositoryTemplate {
-  List<Workload> findAllByDatabase(RequestWorkload reqObject);
+  List<Workload> findAllByTestConfig(TestConfig testConfig);
+  List<Workload> findAllByProperties(RequestWorkload reqObject);
   Workload save(Workload workload);
 }

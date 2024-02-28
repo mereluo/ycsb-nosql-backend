@@ -29,8 +29,8 @@ public class CompleteWorkload {
   private String type; // ycsb, ycsb-t, or ycsb-r
   private String platform;
   private int numOfNodes; // number of CPUs: 5000 -> 5 CPUs
-  private boolean isMultiRegional; // multi or single
-  private boolean isCoLocated; // whether primary and client are in the same location
+  private String isMultiRegional; // multi or single
+  private String isCoLocated; // whether primary and client are in the same location
   private String locationDetails;
   private String description;
 
