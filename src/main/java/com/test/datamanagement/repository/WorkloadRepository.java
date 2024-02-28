@@ -2,10 +2,14 @@ package com.test.datamanagement.repository;
 
 import com.test.datamanagement.entity.TestConfig;
 import com.test.datamanagement.entity.Workload;
+import com.test.datamanagement.model.CompleteWorkload;
 import com.test.datamanagement.model.RequestWorkload;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.bson.Document;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.LookupOperation;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -25,7 +29,7 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
     Query query = new Query(criteria);
     return mongoTemplate.find(query, Workload.class);
   }
-  public List<Workload> findAllByProperties(RequestWorkload reqObject) {
+  public List<CompleteWorkload> findAllByProperties(RequestWorkload reqObject) {
     LookupOperation lookTestConfig = LookupOperation.newLookup()
         .from("test_config").localField("testConfig")
         .foreignField("_id").as("testConfig");
@@ -41,7 +45,19 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
         Aggregation.unwind("dbConfig"),
         Aggregation.match(createCriteria(reqObject))
     );
-    return mongoTemplate.aggregate(aggregation, "workload", Workload.class).getMappedResults();
+
+    AggregationResults <Workload> results = mongoTemplate.aggregate(aggregation, "workload", Workload.class);
+
+    List<Document> raw = results.getRawResults().getList("results", Document.class);
+    List<Workload> mapped = results.getMappedResults();
+
+    List<CompleteWorkload> res = new ArrayList<>();
+    for (int i = 0; i < mapped.size(); i++) {
+      CompleteWorkload curr = new CompleteWorkload(mapped.get(i), raw.get(i));
+      res.add(curr);
+      System.out.println(curr);
+    }
+    return res;
   }
 
   private Criteria createCriteria(RequestWorkload entity) {

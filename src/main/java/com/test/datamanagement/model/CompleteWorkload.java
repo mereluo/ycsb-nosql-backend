@@ -5,6 +5,7 @@ import com.test.datamanagement.entity.DatabaseOption;
 import com.test.datamanagement.entity.TestConfig;
 import com.test.datamanagement.entity.Workload;
 import java.util.Map;
+import org.bson.Document;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,10 +35,31 @@ public class CompleteWorkload {
   private String locationDetails;
   private String description;
 
-
   // databaseOption fields
   private String database;
 
+  public CompleteWorkload(Workload mapped, Document raw) {
+    workloadType = mapped.getWorkloadType();
+    updateType = mapped.getUpdateType();
+    userDefinedFields = mapped.getUserDefinedFields();
+    timeSeries = mapped.getTimeSeries();
+
+    Document testDoc = raw.get("testConfig", Document.class);
+    concurrencyLevel = testDoc.getInteger("concurrencyLevel");
+    recordCounts = testDoc.getInteger("recordCounts");
+    commandLine = testDoc.getString("commandLine");
+
+    Document dbConfig = raw.get("dbConfig", Document.class);
+    type = dbConfig.getString("type");
+    platform = dbConfig.getString("platform");
+    numOfNodes = dbConfig.getInteger("numOfNodes");
+    isMultiRegional = dbConfig.getBoolean("isMultiRegional").toString();
+    isCoLocated = dbConfig.getBoolean("isCoLocated").toString();
+    locationDetails = dbConfig.getString("locationDetails");
+    description = dbConfig.getString("description");
+
+    database = dbConfig.getString("dbOption");
+  }
   public DBConfig getDBConfig(DatabaseOption dbOption) {
     return new DBConfig(type, platform, numOfNodes, isMultiRegional, description, isCoLocated,
         locationDetails, dbOption);
@@ -49,4 +71,24 @@ public class CompleteWorkload {
     return new Workload(workloadType, updateType, userDefinedFields, timeSeries, testConfig);
   }
 
+  @Override
+  public String toString() {
+    return "CompleteWorkload{" +
+        "workloadType='" + workloadType + '\'' +
+        ", updateType='" + updateType + '\'' +
+        ", userDefinedFields=" + userDefinedFields +
+        ", timeSeries=" + timeSeries +
+        ", concurrencyLevel=" + concurrencyLevel +
+        ", recordCounts=" + recordCounts +
+        ", commandLine='" + commandLine + '\'' +
+        ", type='" + type + '\'' +
+        ", platform='" + platform + '\'' +
+        ", numOfNodes=" + numOfNodes +
+        ", isMultiRegional='" + isMultiRegional + '\'' +
+        ", isCoLocated='" + isCoLocated + '\'' +
+        ", locationDetails='" + locationDetails + '\'' +
+        ", description='" + description + '\'' +
+        ", database='" + database + '\'' +
+        '}';
+  }
 }

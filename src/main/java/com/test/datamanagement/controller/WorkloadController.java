@@ -57,7 +57,7 @@ public class WorkloadController {
   }
 
   @PostMapping("/search")
-  public List<Workload> retrieve(@RequestBody RequestWorkload entity) {
+  public List<CompleteWorkload> retrieve(@RequestBody RequestWorkload entity) {
     return workloadService.findAllByProperties(entity);
   }
 }
