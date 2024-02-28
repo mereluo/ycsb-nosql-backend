@@ -1,6 +1,7 @@
 package com.test.datamanagement.service.impl;
 import com.test.datamanagement.entity.TestConfig;
 import com.test.datamanagement.entity.Workload;
+import com.test.datamanagement.model.CompleteWorkload;
 import com.test.datamanagement.model.RequestWorkload;
 import com.test.datamanagement.repository.WorkloadRepository;
 import com.test.datamanagement.service.WorkloadService;
@@ -25,7 +26,7 @@ public class WorkloadServiceImpl implements WorkloadService {
   public List<Workload> findAllByTestConfig(TestConfig testConfig) {
     return workloadRepository.findAllByTestConfig(testConfig);
   }
-  public List<Workload> findAllByProperties(RequestWorkload reqObject) {
+  public List<CompleteWorkload> findAllByProperties(RequestWorkload reqObject) {
     return workloadRepository.findAllByProperties(reqObject);
   }
   @Override
