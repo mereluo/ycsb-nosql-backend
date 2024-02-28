@@ -79,6 +79,15 @@
 #  "testConfig": {"commandLine" :  "sample commandLine"}
 #}
 
+### find by database
+POST http://localhost:8080/api/workload/search
+Content-Type: application/json
+
+{
+  "updateType": "query",
+  "numOfNodes": 5000
+}
+
 ### Create a new workload using all fields
 POST http://localhost:8080/api/workload/save
 Content-Type: application/json
@@ -117,7 +126,9 @@ Content-Type: application/json
   "type": "ycsb-t",
   "platform": "Sample Platform",
   "numOfNodes": 3,
-  "numOfRegions": 2,
+  "isMultiRegions": true,
+  "isCoLocated": false,
+  "locationDetails": "Oregon",
   "description": "Sample DBConfig",
 
   "database": "MongoDB"
@@ -136,9 +147,13 @@ Content-Type: application/json
   "type": "ycsb-t",
   "platform": "Sample Platform",
   "numOfNodes": 3,
-  "numOfRegions": 2,
+  "isMultiRegions": true,
+  "isCoLocated": false,
+  "locationDetails": "Oregon",
   "description": "Sample DBConfig",
 
   "database": "MongoDB"
 }
+
+
 

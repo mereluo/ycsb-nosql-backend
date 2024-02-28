@@ -16,20 +16,25 @@ public class DBConfig {
 
   private String type; // ycsb, ycsb-t, or ycsb-r
   private String platform;
-  private int numOfNodes;
-  private int numOfRegions;
+  private int numOfNodes; // number of CPUs: 5000 -> 5 CPUs
+  private String isMultiRegional; // multi or single
+  private String isCoLocated; // whether primary and client are in the same location
+  private String locationDetails;
   private String description;
+
 
   @DocumentReference(lookup = "{ 'database': ?#{#target} }")
   private DatabaseOption dbOption;
 
-  public DBConfig(String type, String platform, int numOfNodes, int numOfRegions,
-      String description, DatabaseOption dbOption) {
+  public DBConfig(String type, String platform, int numOfNodes, String isMultiRegional,
+      String description, String isCoLocated, String locationDetails, DatabaseOption dbOption) {
     this.type = type;
     this.platform = platform;
     this.numOfNodes = numOfNodes;
-    this.numOfRegions = numOfRegions;
+    this.isMultiRegional = isMultiRegional;
     this.description = description;
+    this.isCoLocated = isCoLocated;
+    this.locationDetails = locationDetails;
     this.dbOption = dbOption;
   }
 
@@ -42,16 +47,17 @@ public class DBConfig {
       return false;
     }
     DBConfig dbConfig = (DBConfig) o;
-    return getNumOfNodes() == dbConfig.getNumOfNodes()
-        && getNumOfRegions() == dbConfig.getNumOfRegions() && Objects.equals(getType(),
+    return getNumOfNodes() == dbConfig.getNumOfNodes() && Objects.equals(getType(),
         dbConfig.getType()) && Objects.equals(getPlatform(), dbConfig.getPlatform())
+        && Objects.equals(getIsMultiRegional(), dbConfig.getIsMultiRegional())
+        && Objects.equals(getIsCoLocated(), dbConfig.getIsCoLocated())
         && Objects.equals(getDescription(), dbConfig.getDescription())
         && Objects.equals(getDbOption(), dbConfig.getDbOption());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getType(), getPlatform(), getNumOfNodes(), getNumOfRegions(),
-        getDescription(), getDbOption());
+    return Objects.hash(getType(), getPlatform(), getNumOfNodes(), getIsMultiRegional(),
+        getIsCoLocated(), getDescription(), getDbOption());
   }
 }

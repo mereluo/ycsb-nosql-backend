@@ -1,10 +1,10 @@
 package com.test.datamanagement.service.impl;
 import com.test.datamanagement.entity.TestConfig;
 import com.test.datamanagement.entity.Workload;
+import com.test.datamanagement.model.RequestWorkload;
 import com.test.datamanagement.repository.WorkloadRepository;
 import com.test.datamanagement.service.WorkloadService;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,21 +14,19 @@ public class WorkloadServiceImpl implements WorkloadService {
   public WorkloadServiceImpl(WorkloadRepository workloadRepository) {
     this.workloadRepository = workloadRepository;
   }
-  @Override
-  public List<Workload> findAllEntity() {
-    return workloadRepository.findAll();
-  }
-  @Override
-  public Optional<Workload> findById(Long id) {
-    return workloadRepository.findById(id);
-  }
-
-//  public Workload findFirstByTestConfig(TestConfig testConfig) {
-//    return workloadRepository.findFirstByTestConfig(testConfig);
+//  @Override
+//  public List<Workload> findAllEntity() {
+//    return workloadRepository.findAll();
 //  }
-
+//  @Override
+//  public Optional<Workload> findById(Long id) {
+//    return workloadRepository.findById(id);
+//  }
   public List<Workload> findAllByTestConfig(TestConfig testConfig) {
     return workloadRepository.findAllByTestConfig(testConfig);
+  }
+  public List<Workload> findAllByProperties(RequestWorkload reqObject) {
+    return workloadRepository.findAllByProperties(reqObject);
   }
   @Override
   public Workload saveEntity(Workload workload) {
@@ -40,13 +38,13 @@ public class WorkloadServiceImpl implements WorkloadService {
     }
     return workloadRepository.save(workload);
   }
-  @Override
-  public Workload updateEntity(Workload workload) {
-    return workloadRepository.save(workload);
-  }
-  @Override
-  public void deleteEntity(Long id) {
-    workloadRepository.deleteById(id);
-  }
+//  @Override
+//  public Workload updateEntity(Workload workload) {
+//    return workloadRepository.save(workload);
+//  }
+//  @Override
+//  public void deleteEntity(Long id) {
+//    workloadRepository.deleteById(id);
+//  }
 
 }
