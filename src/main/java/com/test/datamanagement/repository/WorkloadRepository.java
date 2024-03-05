@@ -55,7 +55,6 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
     for (int i = 0; i < mapped.size(); i++) {
       CompleteWorkload curr = new CompleteWorkload(mapped.get(i), raw.get(i));
       res.add(curr);
-      System.out.println(curr);
     }
     return res;
   }
