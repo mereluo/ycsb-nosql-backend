@@ -43,9 +43,9 @@ public class WorkloadServiceImpl implements WorkloadService {
 //  public Workload updateEntity(Workload workload) {
 //    return workloadRepository.save(workload);
 //  }
-//  @Override
-//  public void deleteEntity(Long id) {
-//    workloadRepository.deleteById(id);
-//  }
+  @Override
+  public void deleteById(String id) {
+    workloadRepository.deleteById(id);
+  }
 
 }
