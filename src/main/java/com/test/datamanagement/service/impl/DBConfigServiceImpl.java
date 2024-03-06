@@ -24,7 +24,7 @@ public class DBConfigServiceImpl implements DBConfigService {
     return dbConfigRepository.findAllByDbOption(databaseOption);
   }
   @Override
-  public Optional<DBConfig> findById(Long id) {
+  public Optional<DBConfig> findById(String id) {
     return dbConfigRepository.findById(id);
   }
   @Override
@@ -46,7 +46,7 @@ public class DBConfigServiceImpl implements DBConfigService {
     return dbConfigRepository.save(dbConfig);
   }
   @Override
-  public void deleteEntity(Long id) {
+  public void deleteEntity(String id) {
     dbConfigRepository.deleteById(id);
   }
 

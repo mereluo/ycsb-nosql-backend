@@ -92,42 +92,9 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
     return criteria;
   }
 
-  public void deleteById(String id) {
+  public Workload deleteById(String id) {
     Query workloadQuery = new Query(Criteria.where("_id").is(id));
-    Workload deletedWorkload = mongoTemplate.findAndRemove(workloadQuery, Workload.class);
-
-    if (deletedWorkload != null) {
-      // Check if the associated TestConfig is exclusively associated with this Workload
-      if (deletedWorkload.getTestConfig() != null &&
-          isTestConfigExclusive(deletedWorkload.getTestConfig().getId())) {
-        Query testConfigQuery = new Query(Criteria.where("_id").is(deletedWorkload.getTestConfig().getId()));
-        mongoTemplate.remove(testConfigQuery, TestConfig.class);
-      }
-
-      // Check if the associated DBConfig is exclusively associated with this TestConfig
-      if (deletedWorkload.getTestConfig() != null &&
-          deletedWorkload.getTestConfig().getDbConfig() != null &&
-          isDbConfigExclusive(deletedWorkload.getTestConfig().getDbConfig().getId())) {
-        Query dbConfigQuery = new Query(Criteria.where("_id").is(deletedWorkload.getTestConfig().getDbConfig().getId()));
-        mongoTemplate.remove(dbConfigQuery, DBConfig.class);
-      }
-    }
-  }
-
-  private boolean isTestConfigExclusive(String testConfigId) {
-    Query query = new Query(Criteria.where("testConfig.id").is(testConfigId));
-    long count = mongoTemplate.count(query, Workload.class);
-
-    // If count is 1, it means the TestConfig is exclusively associated with a single Workload
-    return count == 0;
-  }
-
-  private boolean isDbConfigExclusive(String dbConfigId) {
-    Query query = new Query(Criteria.where("dbConfig.id").is(dbConfigId));
-    long count = mongoTemplate.count(query, TestConfig.class);
-
-    // If count is 1, it means the DBConfig is exclusively associated with a single TestConfig
-    return count == 0;
+    return mongoTemplate.findAndRemove(workloadQuery, Workload.class);
   }
 
 }

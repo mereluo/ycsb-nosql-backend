@@ -10,4 +10,5 @@ public interface WorkloadRepositoryTemplate {
   List<Workload> findAllByTestConfig(TestConfig testConfig);
   List<CompleteWorkload> findAllByProperties(RequestWorkload reqObject);
   Workload save(Workload workload);
+  Workload deleteById(String id);
 }

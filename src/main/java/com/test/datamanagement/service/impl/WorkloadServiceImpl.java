@@ -44,8 +44,8 @@ public class WorkloadServiceImpl implements WorkloadService {
 //    return workloadRepository.save(workload);
 //  }
   @Override
-  public void deleteById(String id) {
-    workloadRepository.deleteById(id);
+  public Workload deleteById(String id) {
+    return workloadRepository.deleteById(id);
   }
 
 }

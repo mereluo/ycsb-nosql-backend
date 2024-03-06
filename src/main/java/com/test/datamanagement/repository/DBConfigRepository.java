@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DBConfigRepository extends MongoRepository<DBConfig, Long> {
+public interface DBConfigRepository extends MongoRepository<DBConfig, String> {
   List<DBConfig> findAllByDescription(String description);
   List<DBConfig> findAllByDbOption(DatabaseOption databaseOption);
 }

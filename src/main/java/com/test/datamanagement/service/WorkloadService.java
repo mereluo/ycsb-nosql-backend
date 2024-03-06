@@ -14,5 +14,5 @@ public interface WorkloadService {
   List<Workload> findAllByTestConfig(TestConfig testConfig);
   List<CompleteWorkload> findAllByProperties(RequestWorkload reqObject);
 //  Workload updateEntity(Workload workload);
-  void deleteById(String id);
+  Workload deleteById(String id);
 }

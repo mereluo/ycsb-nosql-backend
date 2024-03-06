@@ -11,6 +11,7 @@ import com.test.datamanagement.service.DBOptionService;
 import com.test.datamanagement.service.TestConfigService;
 import com.test.datamanagement.service.WorkloadService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,9 +66,22 @@ public class WorkloadController {
     return workloadService.findAllByProperties(entity);
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<String> deleteById(@PathVariable String id) {
-      workloadService.deleteById(id);
+      Workload deleted = workloadService.deleteById(id);
+      TestConfig testConfig = deleted.getTestConfig();
+      if (testConfig != null) {
+        List<Workload> findWorkloads = workloadService.findAllByTestConfig(testConfig);
+        if (findWorkloads.isEmpty())
+          testConfigService.deleteEntity(testConfig.getId());
+
+        DBConfig dbConfig = testConfig.getDbConfig();
+        if (dbConfig != null) {
+          List<TestConfig> findTestConfigs = testConfigService.findAllByDbConfig(dbConfig);
+          if (findTestConfigs.isEmpty())
+            dbConfigService.deleteEntity(dbConfig.getId());
+        }
+      }
       return ResponseEntity.ok("Workload with ID " + id + " deleted successfully");
   }
 }
