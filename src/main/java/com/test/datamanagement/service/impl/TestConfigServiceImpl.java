@@ -24,7 +24,7 @@ public class TestConfigServiceImpl implements TestConfigService {
     return testConfigRepository.findAllByDbConfig(dbConfig);
   }
   @Override
-  public Optional<TestConfig> findById(Long id) {
+  public Optional<TestConfig> findById(String id) {
     return testConfigRepository.findById(id);
   }
   @Override
@@ -46,7 +46,7 @@ public class TestConfigServiceImpl implements TestConfigService {
     return testConfigRepository.save(testConfig);
   }
   @Override
-  public void deleteEntity(Long id) {
+  public void deleteEntity(String id) {
     testConfigRepository.deleteById(id);
   }
 

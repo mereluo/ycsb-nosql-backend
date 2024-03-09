@@ -53,8 +53,8 @@ public class CompleteWorkload {
     type = dbConfig.getString("type");
     platform = dbConfig.getString("platform");
     numOfNodes = dbConfig.getInteger("numOfNodes");
-    isMultiRegional = dbConfig.getBoolean("isMultiRegional").toString();
-    isCoLocated = dbConfig.getBoolean("isCoLocated").toString();
+    isMultiRegional = dbConfig.getString("isMultiRegional");
+    isCoLocated = dbConfig.getString("isCoLocated");
     locationDetails = dbConfig.getString("locationDetails");
     description = dbConfig.getString("description");
 

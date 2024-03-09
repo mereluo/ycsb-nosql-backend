@@ -8,9 +8,9 @@ import java.util.Optional;
 public interface TestConfigService {
   List<TestConfig> findAllEntity();
   List<TestConfig> findAllByDbConfig(DBConfig dbConfig);
-  Optional<TestConfig> findById(Long id);
+  Optional<TestConfig> findById(String id);
   List<TestConfig> findByCommandLine(String commandLine);
   TestConfig saveEntity(TestConfig testConfig);
   TestConfig updateEntity(TestConfig testConfig);
-  void deleteEntity(Long id);
+  void deleteEntity(String id);
 }

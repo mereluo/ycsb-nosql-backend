@@ -1,5 +1,6 @@
 package com.test.datamanagement.repository;
 
+import com.test.datamanagement.entity.DBConfig;
 import com.test.datamanagement.entity.TestConfig;
 import com.test.datamanagement.entity.Workload;
 import com.test.datamanagement.model.CompleteWorkload;
@@ -21,6 +22,7 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
 
   @Autowired
   MongoTemplate mongoTemplate;
+
   public Workload save(Workload workload) {
     return mongoTemplate.save(workload);
   }
@@ -55,11 +57,9 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
     for (int i = 0; i < mapped.size(); i++) {
       CompleteWorkload curr = new CompleteWorkload(mapped.get(i), raw.get(i));
       res.add(curr);
-      System.out.println(curr);
     }
     return res;
   }
-
   private Criteria createCriteria(RequestWorkload entity) {
     Criteria criteria = new Criteria();
 
@@ -91,4 +91,10 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
 
     return criteria;
   }
+
+  public Workload deleteById(String id) {
+    Query workloadQuery = new Query(Criteria.where("_id").is(id));
+    return mongoTemplate.findAndRemove(workloadQuery, Workload.class);
+  }
+
 }

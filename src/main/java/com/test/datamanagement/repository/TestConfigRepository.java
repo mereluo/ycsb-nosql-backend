@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TestConfigRepository extends MongoRepository<TestConfig, Long> {
+public interface TestConfigRepository extends MongoRepository<TestConfig, String> {
   List<TestConfig> findAllByCommandLine(String commandLine);
   List<TestConfig> findAllByDbConfig(DBConfig config);
 }

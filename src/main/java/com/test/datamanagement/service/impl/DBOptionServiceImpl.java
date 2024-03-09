@@ -19,7 +19,7 @@ public class DBOptionServiceImpl implements DBOptionService {
     return databaseOptionRepository.findAll();
   }
   @Override
-  public Optional<DatabaseOption> findById(Long id) {
+  public Optional<DatabaseOption> findById(String id) {
     return databaseOptionRepository.findById(id);
   }
   @Override
@@ -39,7 +39,7 @@ public class DBOptionServiceImpl implements DBOptionService {
     return databaseOptionRepository.save(databaseOption);
   }
   @Override
-  public void deleteEntity(Long id) {
+  public void deleteEntity(String id) {
     databaseOptionRepository.deleteById(id);
   }
 
