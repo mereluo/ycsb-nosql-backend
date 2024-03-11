@@ -16,8 +16,8 @@ public class RequestWorkload {
   private String updateType;
 
   // testConfig fields
-  private int concurrencyLevel = -1; // 64, 128, 256 maybe an enum?
   private int recordCounts = -1;
+  private int concurrencyLevel = -1; // 64, 128, 256 maybe an enum?
   private String commandLine;
 
   // dbConfig fields
@@ -32,11 +32,22 @@ public class RequestWorkload {
   // databaseOption fields
   private String database;
 
-  public DBConfig getDBConfig(DatabaseOption dbOption) {
-    return new DBConfig(type, platform, numOfNodes, isMultiRegional, description,
-        isCoLocated, locationDetails, dbOption);
-  }
-  public TestConfig getTestConfig(DBConfig dbConfig) {
-    return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
+  @Override
+  public String toString() {
+    return "RequestWorkload{" +
+        "workloadType='" + workloadType + '\'' +
+        ", updateType='" + updateType + '\'' +
+        ", concurrencyLevel=" + concurrencyLevel +
+        ", recordCounts=" + recordCounts +
+        ", commandLine='" + commandLine + '\'' +
+        ", type='" + type + '\'' +
+        ", platform='" + platform + '\'' +
+        ", numOfNodes=" + numOfNodes +
+        ", isMultiRegional='" + isMultiRegional + '\'' +
+        ", isCoLocated='" + isCoLocated + '\'' +
+        ", locationDetails='" + locationDetails + '\'' +
+        ", description='" + description + '\'' +
+        ", database='" + database + '\'' +
+        '}';
   }
 }
