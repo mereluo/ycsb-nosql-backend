@@ -69,15 +69,15 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
       criteria.and("updateType").is(entity.getUpdateType());
 
     if (entity.getConcurrencyLevel() != -1)
-      criteria.and("testConfig.concurrencyLevel").is(entity.getRecordCounts());
+      criteria.and("testConfig.concurrencyLevel").is(entity.getConcurrencyLevel());
     if (entity.getRecordCounts() != -1)
       criteria.and("testConfig.recordCounts").is(entity.getRecordCounts());
-    if (entity.getCommandLine() != null)
+    if (entity.getCommandLine() != null && !entity.getCommandLine().isEmpty())
       criteria.and("testConfig.commandLine").is(entity.getCommandLine());
 
     if (entity.getType() != null)
       criteria.and("dbConfig.type").is(entity.getType());
-    if (entity.getPlatform() != null)
+    if (entity.getPlatform() != null && !entity.getPlatform().isEmpty())
       criteria.and("dbConfig.platform").is(entity.getPlatform());
     if (entity.getNumOfNodes() != -1)
       criteria.and("dbConfig.numOfNodes").is(entity.getNumOfNodes());
@@ -86,7 +86,7 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
     if (entity.getIsCoLocated() != null)
       criteria.and("dbConfig.isCoLocated").is(entity.getIsCoLocated());
 
-    if (entity.getDatabase() != null)
+    if (entity.getDatabase() != null && !entity.getDatabase().isEmpty())
       criteria.and("dbConfig.dbOption").is(entity.getDatabase());
 
     return criteria;

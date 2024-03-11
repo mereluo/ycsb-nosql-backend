@@ -14,6 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CompleteWorkload {
+  private String ID;
 
   // workload fields
   private String workloadType;
@@ -39,6 +40,7 @@ public class CompleteWorkload {
   private String database;
 
   public CompleteWorkload(Workload mapped, Document raw) {
+    ID = mapped.getId();
     workloadType = mapped.getWorkloadType();
     updateType = mapped.getUpdateType();
     userDefinedFields = mapped.getUserDefinedFields();
