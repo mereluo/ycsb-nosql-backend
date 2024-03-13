@@ -16,7 +16,7 @@ public class RequestWorkload {
   private String updateType;
 
   // testConfig fields
-  private int recordCounts = -1;
+  private double recordCounts = -1.0;
   private int concurrencyLevel = -1; // 64, 128, 256 maybe an enum?
   private String commandLine;
 

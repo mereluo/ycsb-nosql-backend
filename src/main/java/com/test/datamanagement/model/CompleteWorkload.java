@@ -24,7 +24,7 @@ public class CompleteWorkload {
 
   // testConfig fields
   private int concurrencyLevel; // 64, 128, 256 maybe an enum?
-  private int recordCounts;
+  private double recordCounts;
   private String commandLine;
 
   // dbConfig fields
@@ -48,7 +48,7 @@ public class CompleteWorkload {
 
     Document testDoc = raw.get("testConfig", Document.class);
     concurrencyLevel = testDoc.getInteger("concurrencyLevel");
-    recordCounts = testDoc.getInteger("recordCounts");
+    recordCounts = testDoc.getDouble("recordCounts");
     commandLine = testDoc.getString("commandLine");
 
     Document dbConfig = raw.get("dbConfig", Document.class);
