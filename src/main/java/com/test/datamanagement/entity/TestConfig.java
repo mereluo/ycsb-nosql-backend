@@ -15,13 +15,13 @@ public class TestConfig {
   private String id;
 
   private int concurrencyLevel; // 64, 128, 256
-  private int recordCounts;
+  private double recordCounts;
   private String commandLine;
 
   @DocumentReference
   private DBConfig dbConfig;
 
-  public TestConfig(int concurrencyLevel, int recordCounts, String commandLine, DBConfig dbConfig) {
+  public TestConfig(int concurrencyLevel, double recordCounts, String commandLine, DBConfig dbConfig) {
     this.concurrencyLevel = concurrencyLevel;
     this.recordCounts = recordCounts;
     this.commandLine = commandLine;
