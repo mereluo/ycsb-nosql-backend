@@ -85,6 +85,8 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
       criteria.and("dbConfig.isMultiRegional").is(entity.getIsMultiRegional());
     if (entity.getIsCoLocated() != null)
       criteria.and("dbConfig.isCoLocated").is(entity.getIsCoLocated());
+    if (entity.getLocationDetails() != null && !entity.getLocationDetails().isEmpty())
+      criteria.and("dbConfig.locationDetails").is(entity.getLocationDetails());
 
     if (entity.getDatabase() != null && !entity.getDatabase().isEmpty())
       criteria.and("dbConfig.dbOption").is(entity.getDatabase());
