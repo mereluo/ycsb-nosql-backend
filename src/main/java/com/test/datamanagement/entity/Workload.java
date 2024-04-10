@@ -20,6 +20,7 @@ public class Workload {
   private String id;
   private String workloadType;
   private String updateType;
+  private String workloadDescription;
   private Map<String, Double> userDefinedFields;
   // A column that uses Json or other dt to store Time series
   @JdbcTypeCode(SqlTypes.JSON)
@@ -28,13 +29,14 @@ public class Workload {
   @DocumentReference
   private TestConfig testConfig;
 
-  public Workload(String workloadType, String updateType, Map<String, Double> userDefinedFields,
+  public Workload(String workloadType, String updateType, String workloadDescription, Map<String, Double> userDefinedFields,
       TimeSeries timeSeries, TestConfig testConfig) {
     this.workloadType = workloadType;
     this.updateType = updateType;
     this.userDefinedFields = userDefinedFields;
     this.timeSeries = timeSeries;
     this.testConfig = testConfig;
+    this.workloadDescription = workloadDescription;
   }
 
   @Override
