@@ -19,6 +19,7 @@ public class CompleteWorkload {
   // workload fields
   private String workloadType;
   private String updateType;
+  private String workloadDescription;
   private Map<String, Double> userDefinedFields;
   private TimeSeries timeSeries;
 
@@ -43,6 +44,7 @@ public class CompleteWorkload {
     ID = mapped.getId();
     workloadType = mapped.getWorkloadType();
     updateType = mapped.getUpdateType();
+    workloadDescription = mapped.getWorkloadDescription();
     userDefinedFields = mapped.getUserDefinedFields();
     timeSeries = mapped.getTimeSeries();
 
@@ -70,7 +72,7 @@ public class CompleteWorkload {
     return new TestConfig(concurrencyLevel, recordCounts, commandLine, dbConfig);
   }
   public Workload getWorkload(TestConfig testConfig) {
-    return new Workload(workloadType, updateType, userDefinedFields, timeSeries, testConfig);
+    return new Workload(workloadType, updateType, workloadDescription, userDefinedFields, timeSeries, testConfig);
   }
 
   @Override

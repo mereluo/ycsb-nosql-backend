@@ -14,6 +14,7 @@ public class RequestWorkload {
   // workload
   private String workloadType;
   private String updateType;
+  private String workloadDescription;
 
   // testConfig fields
   private double recordCounts = -1.0;
@@ -37,6 +38,7 @@ public class RequestWorkload {
     return "RequestWorkload{" +
         "workloadType='" + workloadType + '\'' +
         ", updateType='" + updateType + '\'' +
+        ", workloadDescription='" + workloadDescription + '\'' +
         ", concurrencyLevel=" + concurrencyLevel +
         ", recordCounts=" + recordCounts +
         ", commandLine='" + commandLine + '\'' +

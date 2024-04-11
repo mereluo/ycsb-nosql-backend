@@ -67,6 +67,8 @@ public class WorkloadRepository implements WorkloadRepositoryTemplate {
       criteria.and("workloadType").is(entity.getWorkloadType());
     if (entity.getUpdateType() != null)
       criteria.and("updateType").is(entity.getUpdateType());
+    if (entity.getWorkloadDescription() != null && !entity.getWorkloadDescription().isEmpty())
+      criteria.and("workloadDescription").is(entity.getWorkloadDescription());
 
     if (entity.getConcurrencyLevel() != -1)
       criteria.and("testConfig.concurrencyLevel").is(entity.getConcurrencyLevel());
